@@ -1,4 +1,5 @@
 #include <iostream>
+#include <windows.h>
 
 short scorelinks = 0;
 short scorerechts = 0;
