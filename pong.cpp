@@ -8,7 +8,7 @@ short balhoek;
 short balxpos;
 short balypos;
 short balrichting = 1;
-const short balsnelheid = 5;
+const short balsnelheid = 4;
 const short linkerkant = -64;
 const short rechterkant = 64;
 const short bovenkant = 48;
@@ -18,7 +18,7 @@ void balreset() {
     balxpos = 0;
     balypos = 48;
     balrichting = -1;
-    balhoek = 255;
+    balhoek = 225;
 }
 
 void balresetlinks() {
@@ -35,19 +35,19 @@ void balresetrechts() {
 
 void col_me_bovenkant() {
     if ((balypos == 48) && (balrichting == -1)) {
-        balhoek == 225;
+        balhoek = 225;
     }
     else if ((balypos == 48) && (balrichting == 1)) {
-        balhoek == 315;
+        balhoek = 315;
     }
 }
 
 void col_me_onderkant() {
     if ((balypos == -48) && (balrichting == -1)) {
-        balhoek == 135;
+        balhoek = 135;
     }
     else if ((balypos == -48) && (balrichting == 1)) {
-        balhoek == 45;
+        balhoek = 45;
     }
 }
 
@@ -57,7 +57,7 @@ void col_me_linker_of_rechtermuur() {
         balresetrechts();
     }
     else if (balxpos == rechterkant) {
-        scorelinks == scorelinks++;
+        scorelinks = scorelinks++;
         balresetlinks();
     }
 }
@@ -66,25 +66,6 @@ void balbeweging() {
     if (balrichting == 1 && balhoek == 45) {
         balxpos = balxpos+balsnelheid;
         balypos = balypos+balsnelheid;
-    }
-    else if (balrichting == 1 && balhoek == 315) {
-        balxpos = balxpos+balsnelheid;
-        balypos = balypos-balsnelheid;
-    }
-    else if (balrichting == -1 && balhoek == 135) {
-        balxpos = balxpos-balsnelheid;
-        balypos = balypos+balsnelheid;
-    }
-    else if (balrichting == -1 && balhoek == 225) {
-        balxpos = balxpos-balsnelheid;
-        balypos = balypos-balsnelheid;
-    }
-}
-
-int main() {
-    balreset();
-    while (true) {
-        balbeweging();
         std::cout << balhoek;
         std::cout << "\n";
         std::cout << balxpos;
@@ -93,5 +74,57 @@ int main() {
         std::cout << "\n";
         std::cout << balrichting;
         std::cout << "\n";
+        std::cout << "\n";
+    }
+    else if (balrichting == 1 && balhoek == 315) {
+        balxpos = balxpos+balsnelheid;
+        balypos = balypos-balsnelheid;
+        std::cout << balhoek;
+        std::cout << "\n";
+        std::cout << balxpos;
+        std::cout << "\n";
+        std::cout << balypos;
+        std::cout << "\n";
+        std::cout << balrichting;
+        std::cout << "\n";
+        std::cout << "\n";
+    }
+    else if (balrichting == -1 && balhoek == 135) {
+        balxpos = balxpos-balsnelheid;
+        balypos = balypos+balsnelheid;
+        std::cout << balhoek;
+        std::cout << "\n";
+        std::cout << balxpos;
+        std::cout << "\n";
+        std::cout << balypos;
+        std::cout << "\n";
+        std::cout << balrichting;
+        std::cout << "\n";
+        std::cout << "\n";
+    }
+    else if (balrichting == -1 && balhoek == 225) {
+        balxpos = balxpos-balsnelheid;
+        balypos = balypos-balsnelheid;
+        std::cout << balhoek;
+        std::cout << "\n";
+        std::cout << balxpos;
+        std::cout << "\n";
+        std::cout << balypos;
+        std::cout << "\n";
+        std::cout << balrichting;
+        std::cout << "\n";
+        std::cout << "\n";
+    }
+}
+
+int testbeweging = 1;
+
+int main() {
+    balreset();
+    for (testbeweging = 1; testbeweging<50; testbeweging++) {
+        col_me_bovenkant();
+        col_me_onderkant();
+        col_me_linker_of_rechtermuur();
+        balbeweging();
     }
 }
