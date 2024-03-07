@@ -1,3 +1,5 @@
+#include <iostream>
+
 short scorelinks = 0;
 short scorerechts = 0;
 short paddlepositielinks = 32768;
@@ -57,5 +59,39 @@ void col_me_linker_of_rechtermuur() {
     else if (balxpos == rechterkant) {
         scorelinks == scorelinks++;
         balresetlinks();
+    }
+}
+
+void balbeweging() {
+    if (balrichting == 1 && balhoek == 45) {
+        balxpos = balxpos+balsnelheid;
+        balypos = balypos+balsnelheid;
+    }
+    else if (balrichting == 1 && balhoek == 315) {
+        balxpos = balxpos+balsnelheid;
+        balypos = balypos-balsnelheid;
+    }
+    else if (balrichting == -1 && balhoek == 135) {
+        balxpos = balxpos-balsnelheid;
+        balypos = balypos+balsnelheid;
+    }
+    else if (balrichting == -1 && balhoek == 225) {
+        balxpos = balxpos-balsnelheid;
+        balypos = balypos-balsnelheid;
+    }
+}
+
+int main() {
+    balreset();
+    while (true) {
+        balbeweging();
+        std::cout << balhoek;
+        std::cout << "\n";
+        std::cout << balxpos;
+        std::cout << "\n";
+        std::cout << balypos;
+        std::cout << "\n";
+        std::cout << balrichting;
+        std::cout << "\n";
     }
 }
