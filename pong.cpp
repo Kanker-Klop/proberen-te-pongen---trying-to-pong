@@ -19,18 +19,22 @@ void balreset() {
     balypos = 48;
     balrichting = -1;
     balhoek = 225;
+    std::cout << scorelinks << "   " << scorerechts << "\n";
 }
 
 void balresetlinks() {
     balxpos = 0;
     balypos = 48;
     balrichting = -1;
+    std::cout << scorelinks << "   " << scorerechts << "\n";;
+
 }
 
 void balresetrechts() {
     balxpos = 0;
     balypos = 48;
     balrichting = 1;
+    std::cout << scorelinks << "   " << scorerechts << "\n";;
 }
 
 void col_me_bovenkant() {
@@ -53,11 +57,11 @@ void col_me_onderkant() {
 
 void col_me_linker_of_rechtermuur() {
     if (balxpos == linkerkant) {
-        scorerechts = scorerechts++;
+        scorerechts = scorerechts+1;
         balresetrechts();
     }
     else if (balxpos == rechterkant) {
-        scorelinks = scorelinks++;
+        scorelinks = scorelinks+1;
         balresetlinks();
     }
 }
@@ -121,7 +125,7 @@ int testbeweging = 1;
 
 int main() {
     balreset();
-    for (testbeweging = 1; testbeweging<50; testbeweging++) {
+    for (testbeweging = 1; testbeweging<54; testbeweging++) {
         col_me_bovenkant();
         col_me_onderkant();
         col_me_linker_of_rechtermuur();
